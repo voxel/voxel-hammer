@@ -25,16 +25,16 @@ function HammerPlugin(game, opts) {
 };
 
 HammerPlugin.prototype.enable = function() {
-  this.registry.registerItem('hammerIron', {
+  this.registry.registerItem('hammer', {
     itemTexture: 'items/iron_pickaxe', // TODO
-    displayName: 'Iron Hammer',
+    displayName: 'Hammer',
     toolClass: 'pickaxe',
   });
   if (this.recipes) {
     this.recipes.registerPositional([
         ['ingotIron', 'ingotIron', 'ingotIron'],
         ['ingotIron', 'stick', 'ingotIron'],
-        [undefined, 'stick', undefined]], ['hammerIron']);
+        [undefined, 'stick', undefined]], ['hammer']);
   }
   this.mine.on('break', this.break.bind(this));
 };
@@ -55,7 +55,7 @@ var around = function(cb) {
 HammerPlugin.prototype.break = function(target) {
   var heldItem = this.hotbar.held();
 
-  if (!heldItem || heldItem.item !== 'hammerIron') return;
+  if (!heldItem || heldItem.item !== 'hammer') return;
 
   console.log(target);
   around(function(dx, dy, dz) {
