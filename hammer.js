@@ -19,9 +19,6 @@ function HammerPlugin(game, opts) {
   this.hotbar = game.plugins.get('voxel-inventory-hotbar'); // TODO: carry?
   if (!this.hotbar) throw new Error('voxel-hammer requires voxel-inventory-hotbar');
 
-  //this.harvest = game.plugins.get('voxel-harvest');
-  //if (!this.harvest) throw new Error('voxel-hammer requires voxel-harvest');
-
   this.recipes = game.plugins.get('voxel-recipes'); // optional
 
   this.enable();
