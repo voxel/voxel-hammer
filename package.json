@@ -1,7 +1,7 @@
 {
   "name": "voxel-hammer",
   "description": "mine in 3x3x1 area (voxel.js plugin)",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "main": "hammer.js",
   "repository": {
     "type": "git",
@@ -14,7 +14,6 @@
     "tool",
     "hammer"
   ],
-  "dependencies": {
-  },
+  "dependencies": {},
   "license": "MIT"
 }
