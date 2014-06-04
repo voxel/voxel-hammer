@@ -19,6 +19,9 @@ function HammerPlugin(game, opts) {
   this.hotbar = game.plugins.get('voxel-inventory-hotbar'); // TODO: carry?
   if (!this.hotbar) throw new Error('voxel-hammer requires voxel-inventory-hotbar');
 
+  //this.harvest = game.plugins.get('voxel-harvest');
+  //if (!this.harvest) throw new Error('voxel-hammer requires voxel-harvest');
+
   this.recipes = game.plugins.get('voxel-recipes'); // optional
 
   this.enable();
@@ -58,6 +61,7 @@ HammerPlugin.prototype.break = function(target) {
   var heldItem = this.hotbar.held();
 
   if (!heldItem || heldItem.item !== 'hammer') return; // TODO: can voxel-mine call us from registry property, instead? (ala onUse voxel-use)
+  if (target.fromHammer) return; // don't respond to our own events TODO: generic fromPlayer/synthetic property?
 
   console.log(target);
   around(function(dx, dy, dz) {
@@ -66,7 +70,6 @@ HammerPlugin.prototype.break = function(target) {
     var z = target.voxel[2] + (target.normal[2] === 0 ? dz : 0);
     console.log(x,y,z);
 
-    this.game.setBlock([x,y,z],0);
-    //this.mine.emit('break', {voxel:[x,y,z]}); // TODO: how to report a third-party block break?
+    this.mine.emit('break', {voxel:[x,y,z], value:target.value, fromHammer:true}); // removes block, damages tool, adds to inventory
   }.bind(this));
 };
