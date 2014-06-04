@@ -28,6 +28,8 @@ HammerPlugin.prototype.enable = function() {
   this.registry.registerItem('hammer', {
     itemTexture: 'items/iron_pickaxe', // TODO
     displayName: 'Hammer',
+    speed: 25.0,
+    //maxDamage: // TODO
     toolClass: 'pickaxe',
   });
   if (this.recipes) {
@@ -55,7 +57,7 @@ var around = function(cb) {
 HammerPlugin.prototype.break = function(target) {
   var heldItem = this.hotbar.held();
 
-  if (!heldItem || heldItem.item !== 'hammer') return;
+  if (!heldItem || heldItem.item !== 'hammer') return; // TODO: can voxel-mine call us from registry property, instead? (ala onUse voxel-use)
 
   console.log(target);
   around(function(dx, dy, dz) {
